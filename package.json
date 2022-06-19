@@ -1,0 +1,114 @@
+{
+  "name": "api-gateway",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "TZ=GMT nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "prestart:prod": "typeorm migration:run",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "TZ=GMT jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --config ./jest-cov.json --runInBand --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json --runInBand",
+    "prepare": "husky install",
+    "pretypeorm": "rimraf dist & nest build",
+    "typeorm": "node -r tsconfig-paths/register -r ts-node/register ./node_modules/typeorm/cli.js"
+  },
+  "engines": {
+    "node": ">=16.13.0"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^2.0.5",
+    "@nestjs/apollo": "^10.0.16",
+    "@nestjs/common": "8.2.4",
+    "@nestjs/config": "^2.1.0",
+    "@nestjs/core": "8.2.4",
+    "@nestjs/graphql": "^10.0.16",
+    "@nestjs/jwt": "^8.0.1",
+    "@nestjs/platform-express": "8.2.4",
+    "apollo-server-express": "^3.9.0",
+    "class-transformer": "0.4.0",
+    "class-validator": "0.13.2",
+    "express": "4.17.1",
+    "graphql": "^16.5.0",
+    "graphql-upload": "^13.0.0",
+    "ioredis": "4.28.2",
+    "passport-jwt": "^4.0.0",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "3.0.2",
+    "rxjs": "7.2.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "8.1.6",
+    "@nestjs/schematics": "8.0.5",
+    "@nestjs/testing": "8.2.4",
+    "@types/graphql-upload": "^8.0.11",
+    "@types/ioredis": "4.28.2",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.11",
+    "@types/passport-jwt": "^3.0.6",
+    "@types/supertest": "2.0.11",
+    "@typescript-eslint/eslint-plugin": "5.0.0",
+    "@typescript-eslint/parser": "5.0.0",
+    "eslint": "8.6.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-import-resolver-typescript": "2.5.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "husky": "7.0.4",
+    "jest": "27.2.5",
+    "prettier": "2.5.1",
+    "prettier-plugin-optimize-and-sort-imports": "0.1.0",
+    "source-map-support": "0.5.20",
+    "supertest": "6.1.6",
+    "ts-jest": "27.0.3",
+    "ts-loader": "9.2.3",
+    "ts-node": "10.4.0",
+    "tsconfig-paths": "3.10.1",
+    "typescript": "4.5.2",
+    "webpack": "5.65.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "moduleNameMapper": {
+      "^@entity(.*)$": "<rootDir>src/entity$1",
+      "^config(.*)$": "<rootDir>src/config$1",
+      "^shared(.*)$": "<rootDir>src/shared$1",
+      "^logger(.*)$": "<rootDir>src/logger$1"
+    },
+    "rootDir": "./",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "src/migration"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix"
+    ]
+  }
+}

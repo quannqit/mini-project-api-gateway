@@ -1,0 +1,13 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "tabWidth": 2,
+  "arrowParens": "always",
+  "importOrder": ["^@(.*)", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderParserPlugins": [
+    "typescript",
+    "[\"decorators-legacy\", {\"decoratorsBeforeExport\": true}]"
+  ]
+}
